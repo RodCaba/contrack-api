@@ -1,10 +1,8 @@
 package main
 
 import (
-	"contrack-api/controllers"
 	"contrack-api/models"
-
-	"github.com/gin-gonic/gin"
+	"contrack-api/router"
 )
 
 type Project struct {
@@ -22,11 +20,14 @@ var projects = []Project{
 }
 
 func main() {
-	router := gin.Default()
 
 	models.ConnectDatabase()
 
-	router.GET("/projects", controllers.FindProjects)
+	app := router.Init()
 
-	router.Run("localhost:8080")
+	err := app.Run(":8080")
+
+	if err != nil {
+		panic("Failed to start the server!")
+	}
 }
