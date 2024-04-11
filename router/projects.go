@@ -15,6 +15,8 @@ func Init() *gin.Engine {
 	{
 		project := router.Group("/projects")
 		project.GET("", controllers.FindProjects)
+		project.GET("/:id", controllers.FindProject)
+		project.POST("", controllers.CreateProject)
 	}
 
 	return router
