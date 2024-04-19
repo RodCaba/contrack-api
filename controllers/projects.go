@@ -32,7 +32,17 @@ func FindProject(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": project})
+	projectOutput := dto.GetProjectOutput{
+		ID:                project.ID,
+		AgreedDeliveryDate: project.AgreedDeliveryDate,
+		LastEstimatedIncrease: project.LastEstimatedIncrease,
+		LastEstimateDate: project.LastEstimateDate,
+		AgreedPrice:        project.AgreedPrice,
+		OverallProgress:    project.OverallProgress,
+		Key: 							project.Key,
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": projectOutput})
 }
 
 func CreateProject(c *gin.Context) {
