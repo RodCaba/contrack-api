@@ -12,6 +12,7 @@ func Init() *gin.Engine {
 	router.Use(gin.Recovery())
 	router.Use(middleware.CORSMiddleware())
 
+	InitAuthenticateRouter(router)
 	InitProjectRouter(router)
 
 	return router
